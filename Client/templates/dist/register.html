@@ -1,0 +1,181 @@
+{% load static from staticfiles %}
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#4188c9">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <link rel="icon" href='{% static "dist/favicon.ico" %}' type="image/x-icon"/>
+    <link rel="shortcut icon" type="image/x-icon" href='{% static "dist/favicon.ico" %}' />
+    <!-- Generated: 2018-04-16 09:29:05 +0200 -->
+    <title>Register - tabler.github.io - a responsive, flat and full featured admin template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">a
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+    <!-- <script src='{% static "dist/assets/js/vendors/bootstrap.bundle.min.js" %}'></script> -->
+    
+    <script src='{% static "dist/assets/js/require.min.js" %}'></script>
+    <script>
+      requirejs.config({
+          baseUrl: '{% static "dist" %}'
+      });
+    </script>
+  
+    
+    <!-- <script src='{% static "dist/assets/js/vendors/bootstrap.bundle.min.js" %}' ></script> -->
+    <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+    <!-- Dashboard Core -->
+    <link href='{% static "dist/assets/css/dashboard.css" %}' rel="stylesheet" />
+    <script src='{% static "dist/assets/js/dashboard.js" %}'></script>
+    <script src='{% static "dist/assets/js/helper.js" %}'></script>
+    <!-- c3.js Charts Plugin -->
+    <link href='{% static "dist/assets/plugins/charts-c3/plugin.css" %}' rel="stylesheet" />
+    <script src='{% static "dist/assets/plugins/charts-c3/plugin.js" %}' ></script>
+    <!-- Google Maps Plugin -->
+    <link href='{% static "dist/assets/plugins/maps-google/plugin.css" %}'  rel="stylesheet" />
+    <script src='{% static "dist/assets/plugins/maps-google/plugin.js" %}' ></script>
+    <!-- Input Mask Plugin -->
+    <script src='{% static "dist/assets/plugins/input-mask/plugin.js" %}' ></script>
+  </head>
+  <body class="">
+    <div class="page">
+      <div class="page-single">
+        <div class="container">
+          <div class="row">
+            <div class="col col-login mx-auto">
+              <div class="text-center mb-6">
+                <img src='{% static "dist/demo/brand/tabler.svg" %}' class="h-6" alt="">
+              </div>
+              <form class="card" action="" >
+                <div class="card-body p-6">
+                  <div class="card-title">Create new account</div>
+                  <div class="form-group">
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-control" placeholder="Enter name" id="first_name">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control" placeholder="Enter name" id="last_name">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Contact No</label>
+                    <input type="text" class="form-control" placeholder="Enter name" id="contact_no">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Email address</label>
+                    <input type="email" class="form-control" placeholder="Enter Email" id="email">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" placeholder="Enter Username" id="username">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" placeholder="Password" id="password">
+                  </div>
+                  <label class="radio-inline"><input type="radio" name="user_type" value="teacher">Teacher</label>
+                  <label class="radio-inline"><input type="radio" name="user_type" value="student">Student</label>
+                  <div class="form-group">
+                    <label class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" />
+                      <span class="custom-control-label">Agree the <a href="terms.html">terms and policy</a></span>
+                    </label>
+                  </div>
+                  <div class="form-footer">
+                    <button type="button" class="btn btn-primary btn-block" id="create_account_btn">Create new account</button>
+                  </div>
+                </div>
+              </form>
+              <div class="text-center text-muted">
+                Already have account? <a href="../../login">Sign in</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="div"></div>
+    <script>
+
+      $(document).ready(function()
+      {
+
+        var AUTHENTICATION_TOKEN = null;
+        $("#create_account_btn").click(function()
+        {
+          var first_name = document.getElementById("first_name").value;
+          var last_name = document.getElementById("last_name").value;
+          var email = document.getElementById("email").value;
+          var username = document.getElementById("username").value;
+          var password = document.getElementById("password").value;
+          var contact_no = document.getElementById("contact_no").value;
+          var radioValue = $("input[name='user_type']:checked").val();
+
+          if(!radioValue)
+          {
+            alert('Enter All Information');
+          }
+          else
+          {
+            var st = 0;
+            if(radioValue == "student")
+            {
+              st = 1;
+            }
+            var obj = {"first_name": first_name, "last_name": last_name, "email": email, "username": username, 
+            "password": password, "contact_no": contact_no, "isStudent": st};
+            var myJSON = JSON.stringify(obj);
+            makePostRequestSignUp("http://127.0.0.1:8000/api-auth/signup/", myJSON, null, "POST", "json", "div");
+            // console.log(first_name)
+            // console.log(last_name)
+            // console.log(email)
+            // console.log(username)
+            // console.log(password)
+            // console.log(contact_no)
+            // console.log(radioValue)
+          }
+        });
+
+        function makePostRequestSignUp(url, data, headers, httpverb, datatype, dataType, getElementId)
+        {
+          $.ajax(
+            {
+              url: url,
+              type: httpverb,
+              data: data,
+              async: true,
+              contentType: 'application/json; charset=utf-8',
+              dataType: 'json',
+              success: function(data)
+              {
+                localStorage.AUTHENTICATION_TOKEN = data.token;
+                //AUTHENTICATION_TOKEN = data.token;
+                //setAuth(AUTHENTICATION_TOKEN);
+                //console.log(AUTHENTICATION_TOKEN);
+                //console.log(data);
+                console.log(localStorage.AUTHENTICATION_TOKEN);
+              }
+            }
+          ).done(function(msg)
+            {
+              location.href = "../dashboard/";
+              //alert('done');
+            }
+          );
+        }
+      });
+    </script>
+
+  </body>
+</html>
