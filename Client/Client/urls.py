@@ -18,6 +18,8 @@ from django.urls import path
 from Client_Template import views as Templ_Views
 urlpatterns = [
     #path('profile_page/', Templ_Views.profile_page, name='profile_page'),
+    path('graph/', Templ_Views.show_graph, name='show_graph'),
+    path('projects_list/', Templ_Views.projects_list, name='project_list'),
     path('dashboard/', Templ_Views.dashboard, name='dashboard'),
     path('create_modules/', Templ_Views.create_modules, name='add_modules'),
     path('create_project/', Templ_Views.create_project, name='create_project'),

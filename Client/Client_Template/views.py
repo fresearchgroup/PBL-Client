@@ -27,3 +27,8 @@ def create_modules(request):
 def dashboard(request):
 	return render(request, 'dist/profile.html')
 
+def projects_list(request):
+	return render(request, 'dist/projects_list.html')
+
+def show_graph(request):
+	return render(request, 'dist/graph_page.html')
