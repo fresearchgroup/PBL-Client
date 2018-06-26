@@ -40,7 +40,8 @@
     <script src='{% static "dist/assets/plugins/input-mask/plugin.js" %}' ></script>
     <style>
       .overall_footer {
-        position:absolute;
+        position:relative;
+        margin-top: 150px;
         bottom:0;
         width: 100%;
       }
@@ -66,7 +67,7 @@
                 </div>
                 <div class="dropdown">
                   <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                      <span class="text-default"><b>Username</b></span>
+                      <span class="text-default" id="username_text"><b>Username</b></span>
             
                   </a>
                   
@@ -92,29 +93,34 @@
               <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link"><i class="fe fe-home"></i> Home</a>
+                    <a href="../teacher_dashboard/" class="nav-link"><i class="fe fe-home"></i> Home</a>
                   </li>
-                
-                  <li class="nav-item dropdown">
-                    <a href="javascript:void(0)" class="nav-link active" data-toggle="dropdown"><i class="fe fe-file"></i>Graphs</a>
-                    
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a href="./form-elements.html" class="nav-link"><i class="fe fe-check-square"></i>Student Details</a>
+               
+                  <li class="nav-item">
+                    <a href="../teacher_projects" class="nav-link"><i class="fe fe-file"></i>Graphs</a>
+                   
                   </li>
                   <li class="nav-item">
-                    <a href="./gallery.html" class="nav-link"><i class="fe fe-image"></i>Projects History</a>
+                    <a href="../students" class="nav-link"><i class="fe fe-square"></i>Student Details</a>
                   </li>
                   
+                  <li class="nav-item">
+                    <a href="../create_project/" class="nav-link"><i class="fe fe-image"></i>Create new project</a>
+                   
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <script type="text/javascript">
+        console.log(localStorage.USERNAME);
+        document.getElementById('username_text').innerHTML = localStorage.USERNAME;
+      </script>
       <div class="container">
-          <div class="row">
-              <div class="span3">
+          <div>
+              <!-- <div class="span3">
 
 
                   <div class="well sidebar-nav">
@@ -131,12 +137,15 @@
                               </form>
                       </ul>
                   </div>
-              </div>
-              <div class="span9">
-                  <div class="well">
-                      <div class="page-header">
+              </div> -->
+              <center>
+              <div>
+                  <!-- <div class="well"> -->
+                    <center>
+                      <div style="margin-top: 10%">
                           <h1>Create a new Project</h1>
                       </div>
+                    </center>
 
                       <form id="createTodoForm" action="" method="post" class="form-horizontal" align="center">
 
@@ -194,8 +203,9 @@
 
                       </form>
 
-                  </div>
+                  <!-- </div> -->
               </div>
+              </center>
           </div>
       </div>
       <div class="overall_footer">

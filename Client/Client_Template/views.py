@@ -48,3 +48,6 @@ def student_dashboard(request):
 
 def student_modules_list(request):
 	return render(request, 'dist/student_modules_list.html')
+
+def submit_code(request):
+	return render(request, 'dist/submit_code.html')

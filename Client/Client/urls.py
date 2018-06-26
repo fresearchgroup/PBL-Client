@@ -18,6 +18,7 @@ from django.urls import path
 from Client_Template import views as Templ_Views
 urlpatterns = [
     #path('profile_page/', Templ_Views.profile_page, name='profile_page'),
+    path('submit_code/', Templ_Views.submit_code, name='submit_code'),
     path('student_modules/', Templ_Views.student_modules_list, name='student_modules_list'),
     path('student_dashboard/', Templ_Views.student_dashboard, name='student_dashboard'),
     path('mock/', Templ_Views.mock, name='mock'),

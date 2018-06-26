@@ -57,7 +57,7 @@
                 </div>
                 <div class="dropdown">
                   <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                      <span class="text-default"><b>Username</b></span>
+                      <span class="text-default" id="username_text"><b>Username</b></span>
            
                   </a>
                  
@@ -189,6 +189,10 @@
           </div>
         </div>
       </div>
+      <script type="text/javascript">
+        console.log(localStorage.USERNAME);
+        document.getElementById('username_text').innerHTML = localStorage.USERNAME;
+      </script>
       <div class="footer">
         <div class="container">
           <div class="row">

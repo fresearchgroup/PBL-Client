@@ -91,10 +91,11 @@
 
         var AUTHENTICATION_TOKEN = null;
         var st = 0;
+        var username, password;
         $("#sign_in_btn").click(function()
         {
-          var username = document.getElementById("username").value;
-          var password = document.getElementById("password").value;
+          username = document.getElementById("username").value;
+          password = document.getElementById("password").value;
           var radioValue = $("input[name='user_type']:checked").val();
 
           if(!radioValue)
@@ -128,7 +129,8 @@
                 var returnedData = JSON.parse(data);
                 AUTHENTICATION_TOKEN = returnedData.token;
                 localStorage.AUTHENTICATION_TOKEN = AUTHENTICATION_TOKEN;
-                console.log(localStorage.AUTHENTICATION_TOKEN);
+                localStorage.USERNAME = username;
+                console.log(returnedData);
                 //console.log(data);
               }
             }

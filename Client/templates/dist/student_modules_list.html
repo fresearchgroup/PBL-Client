@@ -175,9 +175,15 @@
 
         $("#get_btn").click(function()
         {
-          project_name = document.getElementById('myInput').value.trim();
+          var module_project = document.getElementById('myInput').value.trim();
+          module_project = module_project.split(':');
+          module_project[0].trim();
+          module_project[1].trim();
+          var project_name = module_project[1].trim();
+          var module_name = module_project[0].trim();
           localStorage.PROJECT_NAME = project_name;
-          location.href = "#";
+          localStorage.MODULE_NAME = module_name;
+          location.href = "../submit_code";
         });
 
         function populate_dropdown2(data)
