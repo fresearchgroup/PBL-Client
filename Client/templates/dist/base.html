@@ -13,48 +13,57 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="icon" href='{% static "dist/favicon.ico" %}' type="image/x-icon"/>
+    <link rel="shortcut icon" type="image/x-icon" href='{% static "dist/favicon.ico" %}' />
+
     <!-- Generated: 2018-04-16 09:29:05 +0200 -->
-    <title>Introduction - Documentation - tabler.github.io - a responsive, flat and full featured admin template</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+
+    
     <script src='{% static "dist/assets/js/require.min.js" %}'></script>
     <script>
       requirejs.config({
           baseUrl: '{% static "dist" %}'
       });
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
     <!-- Dashboard Core -->
     <link href='{% static "dist/assets/css/dashboard.css" %}' rel="stylesheet" />
     <script src='{% static "dist/assets/js/dashboard.js" %}'></script>
     <!-- c3.js Charts Plugin -->
-    <link href='{% static "dist/assets/plugins/charts-c3/plugin.css" rel="stylesheet" %}'/>
-    <script src='{% static "dist/assets/js/jquery-1.10.2.min.js" %}'></script>
-    <script src='{% static "dist/assets/plugins/charts-c3/plugin.js" %}'></script>
+    <link href='{% static "dist/assets/plugins/charts-c3/plugin.css" %}' rel="stylesheet" />
+    <script src='{% static "dist/assets/plugins/charts-c3/plugin.js" %}' ></script>
     <!-- Google Maps Plugin -->
-    <link href='{% static "dist/assets/plugins/maps-google/plugin.css" %}' />
-    <script src='{% static "dist/assets/plugins/maps-google/plugin.js" %}' ></script>
+    <link href='{% static "dist/assets/plugins/maps-google/plugin.css" %}' rel="stylesheet" />
+    <script src='{% static "dist/assets/plugins/maps-google/plugin.js" %}'></script>
     <!-- Input Mask Plugin -->
-    <script src='{% static "dist/assets/plugins/input-mask/plugin.js" %}' ></script>
+    <script src='{% static "dist/assets/plugins/input-mask/plugin.js" %}'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css"></script>
     <style>
       .overall_footer {
-        position:absolute;
+        position:relative;
         bottom:0;
         width: 100%;
       }
     </style>
   </head>
+
 <body>
 
-  
-      <div class="page-main">
+
+<div class="page-main">
         <div class="header py-4">
           <div class="container">
             <div class="d-flex">
               
-              <h2>Project Specification</h2>
+              <h2>Module Specification</h2>
               <div class="d-flex order-lg-2 ml-auto">
                 
                 <div class="dropdown d-none d-md-flex">
@@ -92,7 +101,7 @@
               <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link"><i class="fe fe-home"></i> Home</a>
+                    <a href="#" class="nav-link"><i class="fe fe-home"></i> Home</a>
                   </li>
                 
                   <li class="nav-item dropdown">
@@ -100,10 +109,10 @@
                     
                   </li>
                   <li class="nav-item dropdown">
-                    <a href="./form-elements.html" class="nav-link"><i class="fe fe-check-square"></i>Student Details</a>
+                    <a href="#" class="nav-link"><i class="fe fe-check-square"></i>Student Details</a>
                   </li>
                   <li class="nav-item">
-                    <a href="./gallery.html" class="nav-link"><i class="fe fe-image"></i>Projects History</a>
+                    <a href="#" class="nav-link"><i class="fe fe-image"></i>Projects History</a>
                   </li>
                   
                 </ul>
@@ -112,94 +121,10 @@
           </div>
         </div>
       </div>
-      <div class="container">
-          <div class="row">
-              <div class="span3">
-
-
-                  <div class="well sidebar-nav">
-                      <ul class="nav-pills nav-stacked">
-                        <br><br>
-                          <a href="account.html"><i class="icon-user"></i> My account</a><br>
-                          <a href="../create_modules/"><i class="icon-file"></i> Create a Module</a><br>
-                              <form class="form-search" action="searchTodo.html" id="searchForm" method="get">
-                                  <div class="input-append">
-                                      <input type="text" name="title" class="input-small search-query"
-                                             placeholder="search by title" required="required">
-                                      <button type="submit" class="btn">Go!</button>
-                                  </div>
-                              </form>
-                      </ul>
-                  </div>
-              </div>
-              <div class="span9">
-                  <div class="well">
-                      <div class="page-header">
-                          <h1>Create a new Project</h1>
-                      </div>
-
-                      <form id="createTodoForm" action="" method="post" class="form-horizontal" align="center">
-
-                          <fieldset>
-
-                              <div class="control-group">
-                                  <label class="control-label" for="title">Title:</label>
-
-                                  <div class="controls">
-                                      <input type="text" id="project_title" name="title" required="required" autofocus="autofocus"/>
-                                  </div>
-                              </div>
-
-                              <div class="form-group">
-                              <label class="form-label">Description:</label>
-                              <textarea class="form-control" rows="5" id="project_description"></textarea>
-                            </div>
-                            
-                              
-
-                              <div class="form-actions">
-                                  <button type="button" class="btn btn-primary" id="save_and_redirect_btn"><i class="icon-ok icon-white"></i> Create
-                                  </button>
-                                  <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-remove"></i>
-                                      Cancel
-                                  </button>
-                              </div>
-
-                          </fieldset>
-
-                          <script>
-                              $("#save_and_redirect_btn").click(function()
-                              {
-                                var PROJECT_TITLE = document.getElementById("project_title").value.trim();
-                                var PROJECT_DESCRIPTION = document.getElementById("project_description").value.trim();
-                      
-                                
-                                if(PROJECT_TITLE == "" || PROJECT_DESCRIPTION == "")
-                                {
-                                  alert("Please enter all information to continue");
-                                  return;
-                                }
-                                localStorage.PROJECT_TITLE = PROJECT_TITLE;
-                                localStorage.PROJECT_DESCRIPTION = PROJECT_DESCRIPTION;
-                                
-                                // console.log(PROJECT_TITLE);
-                                // console.log(PROJECT_DESCRIPTION);
-                                // console.log(NO_OF_MODULES);
-                                location.href = "../create_modules/";
-                              });
-                              $('#dueDate').datepicker({
-                                  format: 'dd/mm/yyyy'
-                              });
-                          </script>
-
-                      </form>
-
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="overall_footer">
-      <div class="footer">
+	{% block content %}
+  {% endblock %}
+  <div class="overall_footer">
+  <div class="footer">
         <div class="container">
           <div class="row">
             <div class="col-lg-8">
@@ -255,6 +180,6 @@
           </div>
         </div>
       </footer>
-      </div>
-</body>
+    </div>
+    </body>
 </html>

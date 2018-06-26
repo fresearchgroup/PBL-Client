@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
-
+from django.conf import settings
+from django.shortcuts import render_to_response
 # Create your views here.
 
 def home(request):
 	return render(request,'dist/index.html')
 
 def register(request):
-	return render(request,'dist/register.html')
+	return render(request, 'dist/register.html')
 
 def login(request):
 	return render(request, 'dist/login.html')
@@ -32,3 +33,9 @@ def projects_list(request):
 
 def show_graph(request):
 	return render(request, 'dist/graph_page.html')
+
+def list_students(request):
+	return render(request, 'dist/students_list.html')
+
+def mock(request):
+	return render(request, 'dist/mock.html')

@@ -18,6 +18,8 @@ from django.urls import path
 from Client_Template import views as Templ_Views
 urlpatterns = [
     #path('profile_page/', Templ_Views.profile_page, name='profile_page'),
+    path('mock/', Templ_Views.mock, name='mock'),
+    path('students/', Templ_Views.list_students, name='list_students'),
     path('graph/', Templ_Views.show_graph, name='show_graph'),
     path('projects_list/', Templ_Views.projects_list, name='project_list'),
     path('dashboard/', Templ_Views.dashboard, name='dashboard'),
@@ -26,7 +28,7 @@ urlpatterns = [
     path('form_elements/', Templ_Views.form_elements, name='form_elements'),
     path('login/forgot_password/', Templ_Views.forgot_password, name='login/forgot_password'),
     path('login/',Templ_Views.login, name='login'),
-	path('home/register/', Templ_Views.register),
+	path('register/', Templ_Views.register),
 	path('home/', Templ_Views.home),
     path('admin/', admin.site.urls),
 ]

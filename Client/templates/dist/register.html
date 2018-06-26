@@ -38,7 +38,6 @@
     <!-- Dashboard Core -->
     <link href='{% static "dist/assets/css/dashboard.css" %}' rel="stylesheet" />
     <script src='{% static "dist/assets/js/dashboard.js" %}'></script>
-    <script src='{% static "dist/assets/js/helper.js" %}'></script>
     <!-- c3.js Charts Plugin -->
     <link href='{% static "dist/assets/plugins/charts-c3/plugin.css" %}' rel="stylesheet" />
     <script src='{% static "dist/assets/plugins/charts-c3/plugin.js" %}' ></script>
@@ -110,7 +109,8 @@
 
       $(document).ready(function()
       {
-
+        //var SERVER_IP = ({{ SERVER_IP }}).toString();
+        //console.log(SERVER_IP);
         var AUTHENTICATION_TOKEN = null;
         $("#create_account_btn").click(function()
         {
@@ -136,6 +136,7 @@
             var obj = {"first_name": first_name, "last_name": last_name, "email": email, "username": username, 
             "password": password, "contact_no": contact_no, "isStudent": st};
             var myJSON = JSON.stringify(obj);
+
             makePostRequestSignUp("http://127.0.0.1:8000/api-auth/signup/", myJSON, null, "POST", "json", "div");
             // console.log(first_name)
             // console.log(last_name)

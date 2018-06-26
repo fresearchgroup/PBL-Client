@@ -147,15 +147,17 @@
                   <th>Title</th>
                   <th>Description</th>
                   <th>Dependencies(Space Delimeter)</th>
+                  <th>Students(Space separated usernames)</th>
                 </tr>
                 </thead>
 
                 <tbody >
                     <tr>
                         <td>1</td>
-                        <td><input type="text" name="module_title"></td>
+                        <td><textarea name="module_title" class="form-control" rows="2"></textarea></td>
                         <td><textarea name="desc" class="form-control" rows="5"></textarea></td>
-                        <td><input type="text" name="module_dependencies"></td>
+                        <td><textarea name="module_dependencies" class="form-control" rows="3"></textarea></td>
+                        <td><textarea name="students_assigned" class="form-control" rows="5"></textarea></td>
                 </tbody>
                 
         </table>
@@ -186,7 +188,7 @@
   $("#add_new_module").click(function()
   {
     n++;
-    $('#modules_table tr:last').after('<tr><td>'+n+'</td><td><input type="text" name="mod1"></td><td><textarea class="form-control"rows="5" name="desc"></textarea></td><td><input type="text" name="module_dependencies"></td></tr>');
+    $('#modules_table tr:last').after('<tr><td>'+n+'</td><td><textarea name="module_title" class="form-control" rows="2"></textarea></td><td><textarea class="form-control"rows="5" name="desc"></textarea></td><td><textarea name="module_dependencies" class="form-control" rows="3"></textarea></td><td><textarea name="students_assigned" class="form-control" rows="5"></textarea></td></tr>');
   });
   $('#remove_last_module').on("click", function()
   {
@@ -217,9 +219,10 @@
         {
           var module = 
           {
-              module_name : $(this).find("td:eq(1) input[type='text']").val(),
+              module_name : $(this).find("td:eq(1) textarea[name='module_title']").val(),
               description : $(this).find("td:eq(2) textarea[name='desc']").val(),
-              dependencies : []
+              dependencies : [] ,
+              students : []
           };
           //module.module_name = $(this).find("td:eq(1) input[type='text']").val();
           //console.log($(this).find("td:eq(1) input[type='text']").val());
@@ -232,8 +235,12 @@
       i = 0;
       $('#modules_table tbody tr').each(function()
         {
-          var str = $(this).find("td:eq(3) input[type='text']").val().trim();
+          var str = $(this).find("td:eq(3) textarea[name='module_dependencies']").val().trim();
+          var stud = $(this).find("td:eq(4) textarea[name='students_assigned']").val().trim();
+          console.log(str);
+          console.log(stud);
           str = str.replace(/\s+/g, " ");
+          stud = stud.replace(/\s+/g, " ");
           //console.log(str);
           var areNum = /^[0-9\s]*$/.test(str);
           if(!areNum)
@@ -243,23 +250,47 @@
             return;
           }
           
-          if(str == "" || str == " ")
+          if((str == "" || str == " ") && (stud == "" || stud == " "))
           {
             return;
           }
           var res = str.split(" ").map(Number);
+          var st = stud.split(" ");
           var n1 = res.length;
           var j = 0;
-          for(j=0;j<n1;j++)
+
+          for(j=0;j<st.length && st!="" && st!=" ";j++)
+          {
+            modules[i].students.push(st[j]);
+          }
+          if(st.length == 0  && st!="" && st!=" ")
+          {
+            modules[i].students.push(stud);
+          }
+          for(j=0;j<n1 && str!="" && str!=" ";j++)
           {
             if(res[j] > n || res[j]==i+1 || res[j]<=0)
             {
+              console.log("HEYYY");
               alert("Please enter valid range of dependencies");
               return;
             }
             //console.log(res[j]);
             modules[i].dependencies.push(modules[res[j]-1]);
+
           }
+          if(n1 == 0 && str!="" && str!=" ")
+          {
+            str = parseInt(str,10);
+            if(str > n || str==i+1 || str<=0)
+            {
+              console.log(str);
+              alert("Please enter valid range of dependencies");
+              return;
+            }
+            modules[i].students.push(modules[str-1]);
+          }
+          
           i++;
         }
       );
@@ -289,9 +320,10 @@
             success: function(data) {
                 console.log(data);
             }
+
         }).done(function(msg) 
         {
-            alert('done');
+            alert(msg);
         });
     }
 
