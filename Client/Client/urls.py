@@ -18,11 +18,14 @@ from django.urls import path
 from Client_Template import views as Templ_Views
 urlpatterns = [
     #path('profile_page/', Templ_Views.profile_page, name='profile_page'),
+    path('student_modules/', Templ_Views.student_modules_list, name='student_modules_list'),
+    path('student_dashboard/', Templ_Views.student_dashboard, name='student_dashboard'),
     path('mock/', Templ_Views.mock, name='mock'),
     path('students/', Templ_Views.list_students, name='list_students'),
     path('graph/', Templ_Views.show_graph, name='show_graph'),
-    path('projects_list/', Templ_Views.projects_list, name='project_list'),
-    path('dashboard/', Templ_Views.dashboard, name='dashboard'),
+    path('student_projects/', Templ_Views.student_projects_list, name='student_projects_list'),
+    path('teacher_projects/', Templ_Views.teacher_projects_list, name='teacher_projects_list'),
+    path('teacher_dashboard/', Templ_Views.teacher_dashboard, name='teacher_dashboard'),
     path('create_modules/', Templ_Views.create_modules, name='add_modules'),
     path('create_project/', Templ_Views.create_project, name='create_project'),
     path('form_elements/', Templ_Views.form_elements, name='form_elements'),

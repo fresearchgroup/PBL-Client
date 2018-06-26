@@ -25,11 +25,14 @@ def create_project(request):
 def create_modules(request):
 	return render(request, 'dist/create_modules.html')
 
-def dashboard(request):
-	return render(request, 'dist/profile.html')
+def teacher_dashboard(request):
+	return render(request, 'dist/teacher_dashboard.html')
 
-def projects_list(request):
-	return render(request, 'dist/projects_list.html')
+def teacher_projects_list(request):
+	return render(request, 'dist/teacher_projects_list.html')
+
+def student_projects_list(request):
+	return render(request, 'dist/student_projects_list.html')
 
 def show_graph(request):
 	return render(request, 'dist/graph_page.html')
@@ -39,3 +42,9 @@ def list_students(request):
 
 def mock(request):
 	return render(request, 'dist/mock.html')
+
+def student_dashboard(request):
+	return render(request, 'dist/student_dashboard.html')
+
+def student_modules_list(request):
+	return render(request, 'dist/student_modules_list.html')

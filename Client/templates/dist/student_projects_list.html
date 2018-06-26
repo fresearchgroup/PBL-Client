@@ -17,7 +17,7 @@
     <link rel="icon" href='{% static "dist/favicon.ico" %}' type="image/x-icon"/>
     <link rel="shortcut icon" type="image/x-icon" href='{% static "dist/favicon.ico" %}' />
     <!-- Generated: 2018-04-16 09:29:05 +0200 -->
-    <title>Project</title>
+    <title>Project-Graph</title>
     <link rel="stylesheet" href=  "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
     <link rel="stylesheet" href= "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext" >
     <script src='{% static "dist/assets/js/require.min.js" %}'></script>
@@ -105,7 +105,7 @@
               </div>
               <form class="card" action="">
                 <div class="card-body p-6">
-                  <div class="card-title">Get your project info</div>
+                  <div class="card-title">Get Your Project Graph</div>
                   <div class="form-group">
                     <label class="form-label">Project Name</label>
                     <input type="text" id="myInput" onkeyup="myFunction2()" placeholder="Search for projects names..">
@@ -113,7 +113,7 @@
                   </div>
                   
                   <div class="form-footer">
-                    <button type="button" class="btn btn-primary btn-block" id="get_btn">GET</button>
+                    <button type="button" class="btn btn-primary btn-block" id="get_btn">GET GRAPH</button>
                   </div>
                 </div>
               </form>
@@ -142,7 +142,7 @@
         // $("#get_btn").click(function()
         function fun2()
         {
-          getProjectsList("http://127.0.0.1:8000/projects/", null, null, "GET", null, "div");
+          getProjectsList("http://127.0.0.1:8000/student_projects/", null, null, "GET", null, "div");
         }
 
         function getProjectsList(url, data, headers, httpverb, datatype, getElementId)
@@ -182,10 +182,19 @@
         {
           var i = 0;
           var list = [];
+          let projects = new Set();
           for(i=0;i<data.length;i++)
           {
-            //list.push(obj);
-            $('<li />', {html: data[i].project_name}).appendTo('#mylist');
+            projects.add(data[i].project.project_name);
+          }
+          projects.forEach(function (item) {  
+              $('<li />', {html: item.toString()}).appendTo('#mylist');
+              //document.write(item.toString() + ", ");  
+          }); 
+          for(i=0;i<projects.size;i++)
+          {
+            
+            //console.log(`Hey !`);
           }
           
         }

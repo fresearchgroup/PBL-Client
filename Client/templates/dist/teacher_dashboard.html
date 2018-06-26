@@ -24,7 +24,7 @@
           baseUrl: '{% static "dist" %}'
       });
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <!-- Dashboard Core -->
     <link href='{% static "dist/assets/css/dashboard.css" %}' rel="stylesheet" />
     <script src='{% static "dist/assets/js/dashboard.js" %}'></script>
@@ -36,7 +36,6 @@
     <script src='{% static "dist/assets/plugins/maps-google/plugin.js" %}'></script>
     <!-- Input Mask Plugin -->
     <script src='{% static "dist/assets/plugins/input-mask/plugin.js" %}'></script>
-    
   </head>
   <body class="">
     <div class="page">
@@ -45,7 +44,7 @@
           <div class="container">
             <div class="d-flex">
               <a class="header-brand" href="./index.html">
-                <img src='{% static "dist/demo/brand/student.png" %}' class="header-brand-img" alt="dashboard logo">
+                <img src='{% static "dist/demo/brand/dash.png" %}' class="header-brand-img" alt="dashboard logo">
               </a>
               <h2>Dashboard</h2>
               <div class="d-flex order-lg-2 ml-auto">
@@ -83,20 +82,20 @@
               <div class="col-lg order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                   <li class="nav-item">
-                    <a href="../dashboard/" class="nav-link"><i class="fe fe-home"></i> Home</a>
+                    <a href="../teacher_dashboard/" class="nav-link"><i class="fe fe-home"></i> Home</a>
                   </li>
                
-                  <li class="nav-item dropdown">
-                    <a href="javascript:void(0)" class="nav-link " data-toggle="dropdown"><i class="fe fe-file"></i>Graphs</a>
+                  <li class="nav-item">
+                    <a href="../teacher_projects" class="nav-link"><i class="fe fe-file"></i>Graphs</a>
                    
                   </li>
-
-                  <li class="nav-item dropdown">
-                    <a href="#" class="nav-link"><i class="fe fe-check-square"></i>Student Details</a>
-                  </li>
-
                   <li class="nav-item">
-                    <a href="./gallery.html" class="nav-link"><i class="fe fe-image"></i>Projects History</a>
+                    <a href="../students" class="nav-link"><i class="fe fe-square"></i>Student Details</a>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a href="../create_project/" class="nav-link"><i class="fe fe-image"></i>Create new project</a>
+                   
                   </li>
                 </ul>
               </div>
@@ -127,7 +126,7 @@
                       </div>
                       <div class="form-group">
                         <label class="form-label">Bio</label>
-                        <textarea class="form-control" rows="5">Bachelor of Technology                              Department of Computer Science,IIT Bombay </textarea>
+                        <textarea class="form-control" rows="5">Asistant Professor at IIT Bombay          Department of Computer Science </textarea>
                       </div>
                       <div class="form-group">
                         <label class="form-label">Email-Address</label>
@@ -150,6 +149,23 @@
                   <div class="my-6 my-md-5">
                     <div class="container">
                       <div class="row">
+                        <div class="col-md-6 col-xl-6" align="center">
+                          <div class="card">
+                            <div class="card-status bg-blue"></div>
+                              <div class="card-header">
+                                <h3 class="card-title">Students Count</h3>
+                                  <div class="card-options">
+                                    <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                                    <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                  </div>
+                              </div>
+                              <div class="card-body">
+                                <a href="#">
+                                <img src='{% static "dist/demo/brand/student.png" %}' align="center">
+                                </a>
+                              </div>
+                            </div>
+                          </div>
                           <div class="col-md-6 col-xl-6" align="center">
                             <div class="card">
                               <div class="card-status bg-orange"></div>
@@ -161,7 +177,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body" >
-                                  <a href="./index.html">
+                                  <a href="#">
                                   <img src='{% static "dist/demo/brand/project.png" %}'  >
                                   </a>
                                 </div>
@@ -178,8 +194,25 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <a href="./index.html">
+                                    <a href="#">
                                       <img src='{% static "dist/demo/brand/evaluation.png" %}' align="center">
+                                    </a>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-xl-6" align="center">
+                            <div class="card">
+                              <div class="card-status bg-purple"></div>
+                                <div class="card-header">
+                                  <h3 class="card-title">Contributions</h3>
+                                    <div class="card-options">
+                                      <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i  class="fe fe-chevron-up"></i></a>
+                                      <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                               <a href="#">
+                                      <img src='{% static "dist/demo/brand/contribution.png" %}' align="center">
                                     </a>
                                 </div>
                             </div>

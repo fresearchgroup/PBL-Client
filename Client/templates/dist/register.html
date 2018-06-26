@@ -112,6 +112,7 @@
         //var SERVER_IP = ({{ SERVER_IP }}).toString();
         //console.log(SERVER_IP);
         var AUTHENTICATION_TOKEN = null;
+        var st = 0;
         $("#create_account_btn").click(function()
         {
           var first_name = document.getElementById("first_name").value;
@@ -128,7 +129,7 @@
           }
           else
           {
-            var st = 0;
+            
             if(radioValue == "student")
             {
               st = 1;
@@ -170,7 +171,10 @@
             }
           ).done(function(msg)
             {
-              location.href = "../dashboard/";
+              if(st == 0)
+                location.href = "../teacher_dashboard/";
+              else
+                location.href = "../student_dashboard/";
               //alert('done');
             }
           );
