@@ -39,15 +39,35 @@
     <!-- Input Mask Plugin -->
     <script src='{% static "dist/assets/plugins/input-mask/plugin.js" %}'></script>
     <style>
-      #myInput {
-    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
-    background-position: 10px 12px; /* Position the search icon */
-    background-repeat: no-repeat; /* Do not repeat the icon image */
-    width: 100%; /* Full-width */
-    font-size: 16px; /* Increase font-size */
-    padding: 12px 20px 12px 40px; /* Add some padding */
-    border: 1px solid #ddd; /* Add a grey border */
-    margin-bottom: 12px; /* Add some space below the input */
+    html, body {
+    height: 100%;
+    margin-top: 30px;    
+    }
+    #outer_div {
+      height: 100%;
+      max-height: 40%;
+      
+      overflow: hidden;
+      background: ivory;
+      align-content: center;
+    }
+    #inner_div {
+      height: 100%;
+      max-height: 300px;
+      overflow-y: scroll;
+      background: ivory;
+
+    }
+
+    #myInput {
+      background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+      background-position: 10px 12px; /* Position the search icon */
+      background-repeat: no-repeat; /* Do not repeat the icon image */
+      width: 100%; /* Full-width */
+      font-size: 16px; /* Increase font-size */
+      padding: 12px 20px 12px 40px; /* Add some padding */
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
     }
 
     #mylist {
@@ -78,7 +98,7 @@
     <div>
       <div>
         <div class="container">
-          <div class="row">
+          <div >
             <div class="col col-login mx-auto">
               <div >
                 <h><b><center><font size ="5"> Project Info</font></center></b></h>
@@ -99,14 +119,18 @@
               </form>
               
             </div>
+            <div class="col col-login mx-auto" id="outer_div">
+              <div id="inner_div">
+                <ul id="mylist">
+                              
+                </ul>
+              </div>
+              
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <ul id="mylist">
-                      
-        </ul>
-      </div>
+      
     </div>
     <div id="div"></div>
     <script>
