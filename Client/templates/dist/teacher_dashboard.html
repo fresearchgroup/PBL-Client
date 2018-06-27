@@ -43,10 +43,11 @@
         <div class="header py-4">
           <div class="container">
             <div class="d-flex">
-              <a class="header-brand" href="./index.html">
+              <a class="header-brand" href="#">
                 <img src='{% static "dist/demo/brand/dash.png" %}' class="header-brand-img" alt="dashboard logo">
               </a>
-              <h2>Dashboard</h2>
+              <h2>Teacher's Dashboard</h2>
+             
               <div class="d-flex order-lg-2 ml-auto">
                 <div class="dropdown d-none d-md-flex">
                   <a class="nav-link icon" onclick="return logout_btn();">
@@ -233,7 +234,7 @@
         function logout_btn()
         {
           localStorage.clear();
-          location.href = "../login";
+          location.href = "../";
         }
       </script>
       <div class="footer">

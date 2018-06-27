@@ -33,6 +33,6 @@ urlpatterns = [
     path('login/forgot_password/', Templ_Views.forgot_password, name='login/forgot_password'),
     path('login/',Templ_Views.login, name='login'),
 	path('register/', Templ_Views.register),
-	path('home/', Templ_Views.home),
+	path('', Templ_Views.home),
     path('admin/', admin.site.urls),
 ]

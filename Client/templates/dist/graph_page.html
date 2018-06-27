@@ -11,7 +11,20 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.css"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.js"></script>
-	
+	<style>
+        body {
+            color: #d3d3d3;
+            font: 12pt arial;
+            background-color: #222222;
+        }
+
+        #div {
+            width: auto;
+            height: auto;
+            border: 1px solid #444444;
+            background-color: #222222;
+        }
+    </style>
 </head>
 
 <body id="div">
@@ -64,17 +77,69 @@
 				nodes: nodes,
 				edges: edges
 			};
-			var options = {
-				height: '1000px',
-				layout: {
-					hierarchical: {
-						direction: 'UD',
-						nodeSpacing: 150,
-						sortMethod: 'directed' //hubsize, directed.
-					}
-				}
-			};
-
+			// var options = {
+			// 	height: '1000px',
+			// 	layout: {
+			// 		hierarchical: {
+			// 			direction: 'UD',
+			// 			nodeSpacing: 150,
+			// 			sortMethod: 'directed' //hubsize, directed.
+			// 		}
+			// 	}
+			// };
+			// var options = {
+			// 	height: '1000px',
+			//     nodes: {borderWidth: 2},
+			//     interaction: {hover: true}
+			// };
+			// var options = {
+		 //        nodes: {
+		 //            shape: 'dot',
+		 //            size: 30,
+		 //            font: {
+		 //                size: 32,
+		 //                color: '#ffffff'
+		 //            },
+		 //            borderWidth: 2
+		 //        },
+		 //        edges: {
+		 //            width: 2
+		 //        }
+		 //    };
+		 var options = {
+		  height: '1000px',
+	      nodes: {
+	        shape: 'dot',
+	        scaling: {
+	          min: 10,
+	          max: 30
+	        },
+	        font: {
+	          size: 30,
+	          face: 'Tahoma',
+	          color: '#ffffff'
+	        }
+	      },
+	      edges: {
+	        width: 4,
+	        color: 'black',
+	        smooth: {
+	          type: 'discrete'
+	        }
+	      },
+	      physics: {
+	        stabilization: false,
+	        barnesHut: {
+	          gravitationalConstant: -80000,
+	          springConstant: 0.001,
+	          springLength: 200
+	        }
+	      },
+	      interaction: {
+	        tooltipDelay: 200,
+	        hideEdgesOnDrag: true
+	      }
+	    };
 			// initialize your network!
 			var network = new vis.Network(container, data, options);
 

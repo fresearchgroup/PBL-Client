@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response
 # Create your views here.
 
 def home(request):
-	return render(request,'dist/index.html')
+	return render(request,'startbootstrap-grayscale/index.html')
 
 def register(request):
 	return render(request, 'dist/register.html')
