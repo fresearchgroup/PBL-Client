@@ -17,8 +17,8 @@
     <link rel="icon" href='{% static "dist/favicon.ico" %}' type="image/x-icon"/>
     <link rel="shortcut icon" type="image/x-icon" href='{% static "dist/favicon.ico" %}' />
     <!-- Generated: 2018-04-16 09:29:05 +0200 -->
-    <title>Register - tabler.github.io - a responsive, flat and full featured admin template</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">a
+    <title>Register - PBL</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
     <!-- <script src='{% static "dist/assets/js/vendors/bootstrap.bundle.min.js" %}'></script> -->
     
@@ -53,23 +53,41 @@
         <div class="container">
           <div class="row">
             <div class="col col-login mx-auto">
-              <div class="text-center mb-6">
-                <img src='{% static "dist/demo/brand/tabler.svg" %}' class="h-6" alt="">
-              </div>
+              <center>
+                <div>
+                  <h3>Project Based Learning</h3>
+                </div>
+              </center>
               <form class="card" action="" >
+                <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        
+                        <h4 class="modal-title" align="center">Error</h4>
+                      </div>
+                      <div class="modal-body" id="modal_text">
+                        <p>This is a small modal.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="card-body p-6">
                   <div class="card-title">Create new account</div>
                   <div class="form-group">
                     <label class="form-label">First Name</label>
-                    <input type="text" class="form-control" placeholder="Enter name" id="first_name">
+                    <input type="text" class="form-control" placeholder="Enter first name" id="first_name">
                   </div>
                   <div class="form-group">
                     <label class="form-label">Last Name</label>
-                    <input type="text" class="form-control" placeholder="Enter name" id="last_name">
+                    <input type="text" class="form-control" placeholder="Enter last name" id="last_name">
                   </div>
                   <div class="form-group">
                     <label class="form-label">Contact No</label>
-                    <input type="text" class="form-control" placeholder="Enter name" id="contact_no">
+                    <input type="text" maxlength="10" class="form-control" placeholder="Enter contact number" id="contact_no">
                   </div>
                   <div class="form-group">
                     <label class="form-label">Email address</label>
@@ -81,14 +99,14 @@
                   </div>
                   <div class="form-group">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control" placeholder="Password" id="password">
+                    <input type="password" class="form-control" placeholder="Password(Atleast 8 characters long)" id="password">
                   </div>
                   <label class="radio-inline"><input type="radio" name="user_type" value="teacher">Teacher</label>
                   <label class="radio-inline"><input type="radio" name="user_type" value="student">Student</label>
                   <div class="form-group">
                     <label class="custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" />
-                      <span class="custom-control-label">Agree the <a href="terms.html">terms and policy</a></span>
+                      <span class="custom-control-label">Agree the <a href="#">terms and policy</a></span>
                     </label>
                   </div>
                   <div class="form-footer">
@@ -119,14 +137,26 @@
           var first_name = document.getElementById("first_name").value;
           var last_name = document.getElementById("last_name").value;
           var email = document.getElementById("email").value;
-          var username = document.getElementById("username").value;
-          var password = document.getElementById("password").value;
+          username = document.getElementById("username").value;
+          password = document.getElementById("password").value;
           var contact_no = document.getElementById("contact_no").value;
           var radioValue = $("input[name='user_type']:checked").val();
 
+          var contact = /^[0-9\s]*$/.test(contact_no);
+          if(!contact)
+          {
+            //alert("Enter a valid contact number");
+            document.getElementById("modal_text").innerHTML = "Enter a valid contact number.";
+            $("#myModal").modal();
+            return;
+          }
+
           if(!radioValue)
           {
-            alert('Enter All Information');
+            //alert('Enter All Information');
+            document.getElementById("modal_text").innerHTML = "Enter All Information.";
+            $("#myModal").modal();
+            return;
           }
           else
           {

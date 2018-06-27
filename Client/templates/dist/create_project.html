@@ -46,6 +46,7 @@
         width: 100%;
       }
     </style>
+    
   </head>
 <body>
 
@@ -150,9 +151,24 @@
                       <form id="createTodoForm" action="" method="post" class="form-horizontal" align="center">
 
                           <fieldset>
-
+                              <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog modal-sm">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      
+                                      <h4 class="modal-title" align="center">Error</h4>
+                                    </div>
+                                    <div class="modal-body" id="modal_text">
+                                      <p>This is a small modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                               <div class="control-group">
-                                  <label class="control-label" for="title">Title:</label>
+                                  <label class="control-label" for="title" >Title*</label>
 
                                   <div class="controls">
                                       <input type="text" id="project_title" name="title" required="required" autofocus="autofocus"/>
@@ -160,8 +176,8 @@
                               </div>
 
                               <div class="form-group">
-                              <label class="form-label">Description:</label>
-                              <textarea class="form-control" rows="5" id="project_description"></textarea>
+                              <label class="form-label">Description*</label>
+                              <textarea class="form-control" rows="5" id="project_description" required="required"></textarea>
                             </div>
                             
                               
@@ -169,7 +185,7 @@
                               <div class="form-actions">
                                   <button type="button" class="btn btn-primary" id="save_and_redirect_btn"><i class="icon-ok icon-white"></i> Create
                                   </button>
-                                  <button type="button" class="btn" onclick="history.go(-1)"><i class="icon-remove"></i>
+                                  <button type="button" class="btn" id="cancel_button"><i class="icon-remove"></i>
                                       Cancel
                                   </button>
                               </div>
@@ -177,6 +193,16 @@
                           </fieldset>
 
                           <script>
+                              // $(document).ready(function()
+                              // {
+                              //   document.getElementById("alert_text").hidden = True;
+                              // });
+                              $("#cancel_button").click(function()
+                              {
+                                
+                                location.href = "../teacher_dashboard/";
+                              });
+
                               $("#save_and_redirect_btn").click(function()
                               {
                                 var PROJECT_TITLE = document.getElementById("project_title").value.trim();
@@ -185,7 +211,10 @@
                                 
                                 if(PROJECT_TITLE == "" || PROJECT_DESCRIPTION == "")
                                 {
-                                  alert("Please enter all information to continue");
+                                  document.getElementById("modal_text").innerHTML = "Please enter all information to continue.";
+                                  $("#myModal").modal();
+                                  
+                                  //alert("Please enter all information to continue");
                                   return;
                                 }
                                 localStorage.PROJECT_TITLE = PROJECT_TITLE;
@@ -196,9 +225,7 @@
                                 // console.log(NO_OF_MODULES);
                                 location.href = "../create_modules/";
                               });
-                              $('#dueDate').datepicker({
-                                  format: 'dd/mm/yyyy'
-                              });
+                              
                           </script>
 
                       </form>
@@ -208,6 +235,9 @@
               </center>
           </div>
       </div>
+      <script type="text/javascript">
+
+      </script>
       <div class="overall_footer">
       <div class="footer">
         <div class="container">
