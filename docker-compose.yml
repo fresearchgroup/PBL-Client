@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: python Client/manage.py runserver 127.0.0.1:8001
+    volumes:
+      - .:/PBL-client
+    ports:
+      - "8001:8001"
