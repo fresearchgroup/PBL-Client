@@ -347,7 +347,7 @@
   $("#add_new_module").click(function()
   {
     n++;
-    $('#modules_table tr:last').after('<tr><td>'+n+'</td><td><textarea name="module_title" class="form-control" rows="2"></textarea></td><td><textarea class="form-control"rows="5" name="desc"></textarea></td><td><textarea name="module_dependencies" class="form-control" rows="3"></textarea></td><td><textarea name="students_assigned" class="form-control" rows="5"></textarea></td></tr>');
+    $('#modules_table tr:last').after('<tr><td>'+n+'</td><td><textarea name="module_title" required="required" class="form-control" rows="2"></textarea></td><td><textarea required="required" class="form-control" rows="5" name="desc"></textarea></td><td><textarea name="module_dependencies" class="form-control" rows="3"></textarea></td><td><textarea name="students_assigned" class="form-control" rows="5"></textarea></td></tr>');
   });
   $('#remove_last_module').on("click", function()
   {
@@ -491,6 +491,10 @@
             success: function(data) {
               document.getElementById("modal_text").innerHTML = "Project has been successfully added!";
               $("#myModal").modal();
+              if(localStorage.IS_STUDENT == 1)
+                location.href = "../student_dashboard";
+              else
+                location.href = "../teacher_dashboard";
                 //console.log(data);
             },
             error: function(data) {

@@ -28,7 +28,22 @@
 </head>
 
 <body id="div">
-	
+	<div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            
+            <h4 class="modal-title" align="center" id="heading_id">Success</h4>
+          </div>
+          <div class="modal-body" id="modal_text">
+            <p>This is a small modal.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>	
 </body>
 
 <script type="text/javascript">
@@ -58,10 +73,16 @@
 	            success: function(data) {
 	                console.log(data);
 	                render_graph(data);
+	            },
+	            error: function(data) {
+	            	document.getElementById("modal_text").innerHTML = "Sorry! Page could not be loaded! ";
+			        document.getElementById("heading_id").innerHTML = "Failed";
+			        $("#myModal").modal();
 	            }
 	        }).done(function(msg) 
 	        {
-	            alert('done');
+	            //alert('done');
+	            
 	        });
         }
 		function render_graph(data) 
