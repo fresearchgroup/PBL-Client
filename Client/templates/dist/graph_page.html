@@ -1,0 +1,155 @@
+<!DOCTYPE html> {% load staticfiles %}
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Graph</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.css"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.js"></script>
+	<style>
+        body {
+            color: #d3d3d3;
+            font: 12pt arial;
+            background-color: #222222;
+        }
+
+        #div {
+            width: auto;
+            height: auto;
+            border: 1px solid #444444;
+            background-color: #222222;
+        }
+    </style>
+</head>
+
+<body id="div">
+	
+</body>
+
+<script type="text/javascript">
+
+	$(document).ready(function () 
+	{
+		//document.write(localStorage.PROJECT_NAME);
+		var project_name = localStorage.PROJECT_NAME;
+        getGraph("http://127.0.0.1:8000/project_graph/"+project_name+"/", null, null, "GET", null, "div");
+
+
+        function getGraph(url, data, headers, httpverb, datatype, getElementId)
+        {
+        	var AUTHENTICATION_TOKEN = localStorage.AUTHENTICATION_TOKEN;
+	        $.ajax({
+	            url: url,
+	            type: httpverb,
+	            headers: {'Authorization': 'Token ' + AUTHENTICATION_TOKEN},
+	            /*beforeSend: function (request)
+	            {
+	                request.setRequestHeader("Authorization", "Token 7ebc594cc53707aa7b58e16a369a8871d1c5ea5a");
+	            },*/
+	            data : data ,
+	            contentType: 'application/json; charset=utf-8',
+	            dataType: 'json',
+	            async: true,
+	            success: function(data) {
+	                console.log(data);
+	                render_graph(data);
+	            }
+	           
+	        }).done(function(msg) 
+	        {
+	            //alert('done');
+	            
+	        });
+        }
+		function render_graph(data) 
+		{
+			var nodes = new vis.DataSet(JSON.parse(data['nodes']));
+			var edges = new vis.DataSet(JSON.parse(data['edges']));
+
+			// create a network
+			var container = document.getElementById('div');
+
+			// provide the data in the vis format
+			var data = {
+				nodes: nodes,
+				edges: edges
+			};
+			// var options = {
+			// 	height: '1000px',
+			// 	layout: {
+			// 		hierarchical: {
+			// 			direction: 'UD',
+			// 			nodeSpacing: 150,
+			// 			sortMethod: 'directed' //hubsize, directed.
+			// 		}
+			// 	}
+			// };
+			// var options = {
+			// 	height: '1000px',
+			//     nodes: {borderWidth: 2},
+			//     interaction: {hover: true}
+			// };
+			// var options = {
+		 //        nodes: {
+		 //            shape: 'dot',
+		 //            size: 30,
+		 //            font: {
+		 //                size: 32,
+		 //                color: '#ffffff'
+		 //            },
+		 //            borderWidth: 2
+		 //        },
+		 //        edges: {
+		 //            width: 2
+		 //        }
+		 //    };
+		 var options = {
+		  height: '1000px',
+	      nodes: {
+	        shape: 'dot',
+	        scaling: {
+	          min: 10,
+	          max: 30
+	        },
+	        font: {
+	          size: 30,
+	          face: 'Tahoma',
+	          color: '#ffffff'
+	        }
+	      },
+	      edges: {
+	        width: 4,
+	        color: 'black',
+	        smooth: {
+	          type: 'discrete'
+	        }
+	      },
+	      physics: {
+	        stabilization: false,
+	        barnesHut: {
+	          gravitationalConstant: -80000,
+	          springConstant: 0.001,
+	          springLength: 200
+	        }
+	      },
+	      interaction: {
+	        tooltipDelay: 200,
+	        hideEdgesOnDrag: true
+	      }
+	    };
+			// initialize your network!
+			var network = new vis.Network(container, data, options);
+
+			
+		}
+
+	});
+
+</script>
+
+</html>
