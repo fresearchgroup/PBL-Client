@@ -490,6 +490,7 @@
             async: true,
             success: function(data) {
               document.getElementById("modal_text").innerHTML = "Project has been successfully added!";
+              document.getElementById("heading_id").innerHTML = "Success!";
               $("#myModal").modal();
               setTimeout(go_to_home, 2000);
               
