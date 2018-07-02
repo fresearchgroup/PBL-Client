@@ -1,0 +1,228 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#4188c9">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <link rel="icon" href='{% static "dist/favicon.ico" %}' type="image/x-icon"/>
+    <link rel="shortcut icon" type="image/x-icon" href='{% static "dist/favicon.ico" %}' />
+    <!-- Generated: 2018-04-16 09:29:05 +0200 -->
+    <title>Project</title>
+    <link rel="stylesheet" href=  "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href= "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext" >
+    <script src='{% static "dist/assets/js/require.min.js" %}'></script>
+    <script>
+      requirejs.config({
+          baseUrl: '{% static "dist" %}'
+      });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Dashboard Core -->
+    <link href='{% static "dist/assets/css/dashboard.css" %}' rel="stylesheet" />
+    <script src='{% static "dist/assets/js/dashboard.js" %}'></script>
+    <!-- c3.js Charts Plugin -->
+    <link href='{% static "dist/assets/plugins/charts-c3/plugin.css" %}' rel="stylesheet" />
+    <script src='{% static "dist/assets/plugins/charts-c3/plugin.js" %}'></script>
+    <!-- Google Maps Plugin -->
+    <link href='{% static "dist/assets/plugins/maps-google/plugin.css" %}' rel="stylesheet" />
+    <script src='{% static "dist/assets/plugins/maps-google/plugin.js" %}'></script>
+    <!-- Input Mask Plugin -->
+    <script src='{% static "dist/assets/plugins/input-mask/plugin.js" %}'></script>
+    <style>
+    html, body {
+    height: 100%;
+    margin-top: 30px;    
+    }
+    #outer_div {
+      height: 100%;
+      max-height: 40%;
+      
+      overflow: hidden;
+      background: ivory;
+      align-content: center;
+    }
+    #inner_div {
+      height: 100%;
+      max-height: 300px;
+      overflow-y: scroll;
+      background: ivory;
+
+    }
+
+    #myInput {
+      background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+      background-position: 10px 12px; /* Position the search icon */
+      background-repeat: no-repeat; /* Do not repeat the icon image */
+      width: 100%; /* Full-width */
+      font-size: 16px; /* Increase font-size */
+      padding: 12px 20px 12px 40px; /* Add some padding */
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    #mylist {
+        /* Remove default list styling */
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #mylist li {
+        text-align:center;
+        border: 1px solid #ddd; /* Add a border to all links */
+        margin-top: -1px; /* Prevent double borders */
+        background-color: #f6f6f6; /* Grey background color */
+        padding: 12px; /* Add some padding */
+        text-decoration: none; /* Remove default text underline */
+        font-size: 18px; /* Increase the font-size */
+        color: black; /* Add a black text color */
+        display: block; /* Make it into a block element to fill the whole list */
+    }
+
+    #mylist li:hover:not(.header) {
+        background-color: #eee; /* Add a hover effect to all links, except for headers */
+    }
+    </style>
+  </head>
+  <body class="">
+    <div>
+      <div>
+        <div class="container">
+          <div >
+            <div class="col col-login mx-auto">
+              
+              <div >
+                <h><b><center><font size ="5"> Module Info</font></center></b></h>
+              </div>
+              <form class="card" action="">
+                <div class="card-body p-6">
+                  <div class="card-title">Get Your Module Info</div>
+                  <div class="form-group">
+                    <label class="form-label">Module Name : Project Name</label>
+                    <input type="text" id="myInput" onkeyup="myFunction2()" placeholder="Search For Module Name..">
+
+                  </div>
+                  
+                  <div class="form-footer">
+                    <button type="button" class="btn btn-primary btn-block" id="get_btn">GET</button>
+                  </div>
+                </div>
+              </form>
+              
+            </div>
+            
+            <div class="col col-login mx-auto" id="outer_div">
+              <div id="inner_div">
+                <ul id="mylist">
+                              
+                </ul>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div id="div"></div>
+    <script>
+
+      $(document).ready(function()
+      {
+
+        fun2();
+        // $("#get_btn").click(function()
+        function fun2()
+        {
+          getProjectsList("http://127.0.0.1:8000/student_projects/", null, null, "GET", null, "div");
+        }
+
+        function getProjectsList(url, data, headers, httpverb, datatype, getElementId)
+        {
+          var AUTHENTICATION_TOKEN = localStorage.AUTHENTICATION_TOKEN;
+          $.ajax({
+              url: url,
+              type: httpverb,
+              headers: {'Authorization': 'Token ' + AUTHENTICATION_TOKEN},
+              /*beforeSend: function (request)
+              {
+                  request.setRequestHeader("Authorization", "Token 7ebc594cc53707aa7b58e16a369a8871d1c5ea5a");
+              },*/
+              data : data ,
+              contentType: 'application/json; charset=utf-8',
+              dataType: 'json',
+              async: true,
+              success: function(data) {
+                  console.log(data);
+                  populate_dropdown2(data);
+              }
+          }).done(function(msg) 
+          {
+            //alert('done');
+
+          });
+        }
+
+        $("#get_btn").click(function()
+        {
+          var module_project = document.getElementById('myInput').value.trim();
+          module_project = module_project.split(':');
+          module_project[0].trim();
+          module_project[1].trim();
+          var project_name = module_project[1].trim();
+          var module_name = module_project[0].trim();
+          localStorage.PROJECT_NAME = project_name;
+          localStorage.MODULE_NAME = module_name;
+          location.href = "../submit_code";
+        });
+
+        function populate_dropdown2(data)
+        {
+          var i = 0;
+          var list = [];
+          
+          for(i=0;i<data.length;i++)
+          {
+            var str = data[i].module_name + ": " + data[i].project.project_name;
+            $('<li />', {html: str}).appendTo('#mylist');
+            
+          }
+          
+          
+        }
+        
+      
+      });
+      function myFunction2() {
+          // Declare variables
+          var input, filter, ul, li, a, i;
+          input = document.getElementById('myInput');
+          filter = input.value.toUpperCase();
+          ul = document.getElementById("mylist");
+          li = ul.getElementsByTagName('li');
+          console.log(li.length);
+          // Loop through all list items, and hide those who don't match the search query
+          for (i = 0; i < li.length; i++) {
+              //a = li[i].getElementsByTagName("a")[0];
+              if (li[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                  li[i].style.display = "";
+              } else {
+                  li[i].style.display = "none";
+              }
+          }
+        }
+      
+    </script>
+
+  </body>
+</html>

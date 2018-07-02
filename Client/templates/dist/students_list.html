@@ -1,0 +1,187 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#4188c9">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <link rel="icon" href='{% static "dist/favicon.ico" %}' type="image/x-icon"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href='{% static "dist/favicon.ico" %}' />
+    <!-- Generated: 2018-04-16 09:29:05 +0200 -->
+    <title>Students</title>
+    <link rel="stylesheet" href=  "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href= "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext" >
+    <script src='{% static "dist/assets/js/require.min.js" %}'></script>
+    <script>
+      requirejs.config({
+          baseUrl: '{% static "dist" %}'
+      });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Dashboard Core -->
+    <link href='{% static "dist/assets/css/dashboard.css" %}' rel="stylesheet" />
+    <script src='{% static "dist/assets/js/dashboard.js" %}'></script>
+    <!-- c3.js Charts Plugin -->
+    <link href='{% static "dist/assets/plugins/charts-c3/plugin.css" %}' rel="stylesheet" />
+    <script src='{% static "dist/assets/plugins/charts-c3/plugin.js" %}'></script>
+    <!-- Google Maps Plugin -->
+    <link href='{% static "dist/assets/plugins/maps-google/plugin.css" %}' rel="stylesheet" />
+    <script src='{% static "dist/assets/plugins/maps-google/plugin.js" %}'></script>
+    <!-- Input Mask Plugin -->
+    <script src='{% static "dist/assets/plugins/input-mask/plugin.js" %}'></script>
+    <style>
+
+    body {
+      margin-top: 40px;
+      align-content: center;
+    }
+    .outer_div  {
+      vertical-align: middle;
+      align-content: center;
+      overflow: hidden;
+    }
+    #myInput {
+      background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+      background-position: 10px 12px; /* Position the search icon */
+      background-repeat: no-repeat; /* Do not repeat the icon image */
+      width: 30%; /* Full-width */
+      font-size: 16px; /* Increase font-size */
+      padding: 12px 20px 12px 40px; /* Add some padding */
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    #myUL {
+        /* Remove default list styling */
+        width: 30%;
+        height: 300px;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        overflow-y: scroll;
+        align-content: center;
+    }
+
+    #myUL li {
+        border: 1px solid #ddd; /* Add a border to all links */
+        margin-top: -1px; /* Prevent double borders */
+        background-color: #f6f6f6; /* Grey background color */
+        padding: 12px; /* Add some padding */
+        text-decoration: none; /* Remove default text underline */
+        font-size: 18px; /* Increase the font-size */
+        color: black; /* Add a black text color */
+        display: block; /* Make it into a block element to fill the whole list */
+        
+    }
+
+    #myUL li:hover:not(.header) {
+        background-color: #eee; /* Add a hover effect to all links, except for headers */
+    }
+    </style>
+  </head>
+  <body class="">
+    <div class="outer_div">
+      <center>
+      <h1>STUDENTS</h1>
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+      <ul id="myUL" class="text-center">
+        <!-- <li><a href="#">Adele</a></li>
+        <li><a href="#">Agnes</a></li>
+
+        <li><a href="#">Billy</a></li>
+        <li><a href="#">Bob</a></li>
+
+        <li><a href="#">Calvin</a></li>
+        <li><a href="#">Christina</a></li>
+        <li><a href="#">Cindy</a></li> -->
+      </ul>
+      </center>
+      <div id="div"></div>
+    </div>
+    <script>
+
+      $(document).ready(function()
+      {
+
+        fun1();
+        // $("#get_btn").click(function()
+        function fun1()
+        {
+          getStudent1Data("http://127.0.0.1:8000/students/", null, null, "GET", null, "div");
+        }
+
+        function getStudent1Data(url, data, headers, httpverb, datatype, getElementId)
+        {
+          var AUTHENTICATION_TOKEN = localStorage.AUTHENTICATION_TOKEN;
+          $.ajax({
+              url: url,
+              type: httpverb,
+              headers: {'Authorization': 'Token ' + AUTHENTICATION_TOKEN},
+              /*beforeSend: function (request)
+              {
+                  request.setRequestHeader("Authorization", "Token 7ebc594cc53707aa7b58e16a369a8871d1c5ea5a");
+              },*/
+              data : data ,
+              contentType: 'application/json; charset=utf-8',
+              dataType: 'json',
+              async: true,
+              success: function(data) {
+                  console.log(data);
+                  populate_dropdown1(data);
+              }
+          }).done(function(msg) 
+          {
+            //localStorage.PROJECT_NAME = project_name;
+            //location.href = "../graph/";
+            //alert('done');
+
+          });
+        }
+
+        function populate_dropdown1(data)
+        {
+          var i = 0;
+          var list = [];
+          for(i=0;i<data.length;i++)
+          {
+            //list.push(obj);
+            $('<li />', {html: data[i].user.username}).appendTo('#myUL');
+          }
+          
+        }
+        
+      
+      });
+      function myFunction() {
+          // Declare variables
+          var input, filter, ul, li, a, i;
+          input = document.getElementById('myInput');
+          filter = input.value.toUpperCase();
+          ul = document.getElementById("myUL");
+          li = ul.getElementsByTagName('li');
+          console.log(li.length);
+          // Loop through all list items, and hide those who don't match the search query
+          for (i = 0; i < li.length; i++) {
+              //a = li[i].getElementsByTagName("a")[0];
+              if (li[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                  li[i].style.display = "";
+              } else {
+                  li[i].style.display = "none";
+              }
+          }
+        }
+    </script>
+    
+  </body>
+</html>
