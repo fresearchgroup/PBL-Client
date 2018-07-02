@@ -491,13 +491,13 @@
             success: function(data) {
               document.getElementById("modal_text").innerHTML = "Project has been successfully added!";
               $("#myModal").modal();
-              if(localStorage.IS_STUDENT == 1)
-                location.href = "../student_dashboard";
-              else
-                location.href = "../teacher_dashboard";
+              setTimeout(go_to_home, 2000);
+              
+              
                 //console.log(data);
             },
             error: function(data) {
+
               document.getElementById("modal_text").innerHTML = "Sorry, Project could not be added!";
               document.getElementById("heading_id").innerHTML = "Failed";
               $("#myModal").modal();
@@ -508,6 +508,13 @@
           
             //alert(msg);
         });
+    }
+    function go_to_home()
+    {
+      if(localStorage.IS_STUDENT == 1)
+        location.href = "../student_dashboard";
+      else
+        location.href = "../teacher_dashboard";
     }
 
       

@@ -45,6 +45,22 @@
         <div class="container">
           <div class="row">
             <div class="col col-login mx-auto">
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      
+                      <h4 class="modal-title" align="center" id="heading_id">Success</h4>
+                    </div>
+                    <div class="modal-body" id="modal_text">
+                      <p>This is a small modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div >
                 <h><b><center><font size ="5"> Project Based Learning</font></center></b></h>
               </div>
@@ -133,6 +149,12 @@
                 localStorage.IS_STUDENT = st;
                 console.log(returnedData);
                 //console.log(data);
+              },
+              error : function(data)
+              {
+                document.getElementById("modal_text").innerHTML = "Enter correct credentials to continue";
+                document.getElementById("heading_id").innerHTML = "Sign In Failed!";
+                $("#myModal").modal();
               }
             }
           ).done(function(msg)

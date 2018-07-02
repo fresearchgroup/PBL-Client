@@ -54,6 +54,22 @@
           <div class="row">
             <div class="col col-login mx-auto">
               <center>
+                <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        
+                        <h4 class="modal-title" align="center" id="heading_id">Success</h4>
+                      </div>
+                      <div class="modal-body" id="modal_text">
+                        <p>This is a small modal.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div>
                   <h3>Project Based Learning</h3>
                 </div>
@@ -200,6 +216,12 @@
                 localStorage.USERNAME = username;
                 console.log(localStorage.AUTHENTICATION_TOKEN);
                 localStorage.IS_STUDENT = st;
+              },
+              error: function(data)
+              {
+                document.getElementById("modal_text").innerHTML = "Enter valid details to continue";
+                document.getElementById("heading_id").innerHTML = "Registration Failed!";
+                $("#myModal").modal();
               }
             }
           ).done(function(msg)
