@@ -1,4 +1,8 @@
 {% load static %}
+{% load host_info %}
+
+{% get_hostname as HOSTNAME %}
+{% get_port as PORT %}
 
 <!doctype html>
 <html lang="en" dir="ltr">
@@ -126,7 +130,7 @@
             }
             var obj = {"username": username, "password": password, "isStudent": st};
             var myJSON = JSON.stringify(obj);
-            makePostRequestSignIn("http://127.0.0.1:8000/api-auth/signin/", myJSON, null, "POST", "json", "div");
+	    makePostRequestSignIn("{{HOSTNAME}}:{{PORT}}/api-auth/signin/", myJSON, null, "POST", "json", "div");
           }
         });
 

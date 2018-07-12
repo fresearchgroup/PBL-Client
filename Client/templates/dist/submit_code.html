@@ -1,4 +1,9 @@
 {% load staticfiles %}
+{% load host_info %}
+
+{% get_hostname as HOSTNAME %}
+{% get_port as PORT %}
+
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
@@ -61,7 +66,7 @@
       console.log(myJSON);
       // console.log(localStorage.PROJECT_NAME);
       // console.log(localStorage.MODULE_NAME);
-      sendModuleCodeData("http://127.0.0.1:8000/submit_code/", myJSON, null, "POST", null, "div");
+      sendModuleCodeData("{{HOSTNAME}}:{{PORT}}/submit_code/", myJSON, null, "POST", null, "div");
     });
 
     function sendModuleCodeData(url, data, headers, httpVerb, dataType, elementId) 
