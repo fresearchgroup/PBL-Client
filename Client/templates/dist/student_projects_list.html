@@ -1,4 +1,8 @@
 {% load static %}
+{% load host_info %}
+
+{% get_hostname as HOSTNAME %}
+{% get_port as PORT %}
 
 <!doctype html>
 <html lang="en" dir="ltr">
@@ -142,7 +146,7 @@
         // $("#get_btn").click(function()
         function fun2()
         {
-          getProjectsList("http://127.0.0.1:8000/student_projects/", null, null, "GET", null, "div");
+		getProjectsList("{{HOSTNAME}}:{{PORT}}/student_projects/", null, null, "GET", null, "div");
         }
 
         function getProjectsList(url, data, headers, httpverb, datatype, getElementId)

@@ -1,4 +1,9 @@
 {% load staticfiles %}
+{% load host_info %}
+
+{% get_hostname as HOSTNAME %}
+{% get_port as PORT %}
+
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
@@ -277,7 +282,7 @@
         // $("#get_btn").click(function()
         function fun1()
         {
-          getStudent1Data("http://127.0.0.1:8000/students/", null, null, "GET", null, "div");
+		getStudent1Data("{{HOSTNAME}}:{{PORT}}/students/", null, null, "GET", null, "div");
         }
 
         function getStudent1Data(url, data, headers, httpverb, datatype, getElementId)
@@ -463,7 +468,7 @@
 
         var myJSON = JSON.stringify(project);
         console.log(myJSON);
-        sendProjectData("http://127.0.0.1:8000/teacher_projects/", myJSON, null, "POST", null, "div");
+	sendProjectData("{{HOSTNAME}}:{{PORT}}/teacher_projects/", myJSON, null, "POST", null, "div");
       }
       else {
         document.getElementById("modal_text").innerHTML = "Please enter valid range of dependencies!";

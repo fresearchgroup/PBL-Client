@@ -1,4 +1,10 @@
-<!DOCTYPE html> {% load staticfiles %}
+{% load staticfiles %}
+{% load host_info %}
+
+{% get_hostname as HOSTNAME %}
+{% get_port as PORT %}
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -37,7 +43,7 @@
 	{
 		//document.write(localStorage.PROJECT_NAME);
 		var project_name = localStorage.PROJECT_NAME;
-        getGraph("http://127.0.0.1:8000/project_graph/"+project_name+"/", null, null, "GET", null, "div");
+		getGraph("{{HOSTNAME}}:{{PORT}}/project_graph/"+project_name+"/", null, null, "GET", null, "div");
 
 
         function getGraph(url, data, headers, httpverb, datatype, getElementId)

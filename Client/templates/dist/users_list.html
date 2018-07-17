@@ -1,4 +1,8 @@
 {% load static from staticfiles %}
+{% load host_info %}
+
+{% get_hostname as HOSTNAME %}
+{% get_port as PORT %}
 
 <!doctype html>
 <html lang="en" dir="ltr">
@@ -242,7 +246,7 @@
                     $(document).ready(function () {
                       $("#create_account_btn").click(function()
                       {
-                        showUserInfo("http://127.0.0.1:8000/students/", null, null, "GET", "json", "div");
+			      showUserInfo("{{HOSTNAME}}:{{PORT}}/students/", null, null, "GET", "json", "div");
                         //console.log("Hey");
                         //$("#select-users").append("<option value='0'>xyz</option>");
                       });

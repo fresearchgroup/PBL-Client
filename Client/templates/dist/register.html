@@ -1,4 +1,8 @@
 {% load static from staticfiles %}
+{% load host_info %}
+
+{% get_hostname as HOSTNAME %}
+{% get_port as PORT %}
 
 <!doctype html>
 <html lang="en" dir="ltr">
@@ -185,7 +189,7 @@
             "password": password, "contact_no": contact_no, "isStudent": st};
             var myJSON = JSON.stringify(obj);
 
-            makePostRequestSignUp("http://127.0.0.1:8000/api-auth/signup/", myJSON, null, "POST", "json", "div");
+	    makePostRequestSignUp("{{HOSTNAME}}:{{PORT}}/api-auth/signup/", myJSON, null, "POST", "json", "div");
             // console.log(first_name)
             // console.log(last_name)
             // console.log(email)
